@@ -35,7 +35,7 @@ export default function UploadPanel({ onTextReady, loading, onAnalyze, allergies
              videoRef.current.play().catch(e => console.error(e))
           }
         })
-        .catch(err => setCameraError("Camera access denied or unavailable."))
+        .catch(() => setCameraError("Camera access denied or unavailable."))
     }
     
     return () => {
