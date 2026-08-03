@@ -1,0 +1,232 @@
+/* ─── Tailwind v4 CSS-first configuration ─── */
+@import "tailwindcss";
+
+/* ─── Custom Theme ─── */
+@theme {
+  /* Colors */
+  --color-neon-cyan: #00F5FF;
+  --color-neon-green: #00FF94;
+  --color-glass: rgba(255, 255, 255, 0.06);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-bg-primary: #030712;
+  --color-bg-secondary: #0a1f3a;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+
+  /* Fonts */
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* ─── Base Layer ─── */
+@layer base {
+  :root {
+    --bg: #030712;
+    --glass: rgba(255, 255, 255, 0.06);
+    --glass-heavy: rgba(255, 255, 255, 0.1);
+    --glow-cyan: 0 0 20px rgba(0, 245, 255, 0.3);
+    --glow-green: 0 0 20px rgba(0, 255, 148, 0.3);
+    --glow-red: 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: radial-gradient(circle at 20% 20%, var(--color-bg-secondary) 0%, var(--color-bg-primary) 100%);
+    color: white;
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Scrollbar styling for cyber feel */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 245, 255, 0.3);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 245, 255, 0.5);
+  }
+}
+
+/* ─── Component Layer: Glassmorphism ─── */
+@layer components {
+  /* Primary glass card */
+  .glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 1rem;
+  }
+
+  /* Heavier glass for modals/overlays */
+  .glass-card-heavy {
+    background: var(--glass-heavy);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+  }
+
+  /* Neon glow button */
+  .glow-btn {
+    background: linear-gradient(135deg, var(--color-neon-cyan), var(--color-neon-green));
+    color: #000;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .glow-btn:hover {
+    box-shadow: var(--glow-cyan), var(--glow-green);
+    transform: translateY(-1px);
+  }
+  .glow-btn:active {
+    transform: scale(0.97);
+  }
+  .glow-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Danger card (red glow for ER warnings) */
+  .danger-card {
+    background: rgba(239, 68, 68, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 1rem;
+  }
+
+  /* Neon text glow */
+  .neon-text-cyan {
+    color: var(--color-neon-cyan);
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+  }
+  .neon-text-green {
+    color: var(--color-neon-green);
+    text-shadow: 0 0 10px rgba(0, 255, 148, 0.5);
+  }
+
+  /* Input field styling */
+  .glass-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: white;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .glass-input:focus {
+    border-color: var(--color-neon-cyan);
+  }
+  .glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Tab button */
+  .tab-btn {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    color: #9ca3af;
+    background: transparent;
+  }
+  .tab-btn:hover {
+    color: white;
+  }
+  .tab-btn.active {
+    background: var(--color-neon-cyan);
+    color: #000;
+  }
+
+  /* Floating chat button */
+  .chat-fab {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-neon-cyan), var(--color-neon-green));
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--glow-cyan);
+    z-index: 50;
+  }
+
+  /* Radar pulse animation */
+  @keyframes radar-pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.6; }
+  }
+  .radar-pulse {
+    animation: radar-pulse 2s ease-in-out infinite;
+  }
+
+  /* Shake animation for critical alerts */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+  }
+  .shake {
+    animation: shake 0.6s ease-in-out;
+  }
+}
+
+/* ─── NextGen CSS ─── */
+
+/* Container queries for responsive cards */
+@supports (container-type: inline-size) {
+  .card-container {
+    container-type: inline-size;
+  }
+
+  @container (max-width: 400px) {
+    .card-responsive {
+      flex-direction: column;
+    }
+  }
+}
+
+/* :has() for parent-aware styling */
+@supports selector(:has(*)) {
+  .dropzone:has(input:focus) {
+    border-color: var(--color-neon-cyan);
+    background: rgba(0, 245, 255, 0.05);
+  }
+}
