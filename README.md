@@ -24,7 +24,7 @@ Hospital discharge instructions are critically important but structurally broken
 The application is built for a zero-friction experience:
 - **Screen 1: The Upload / Capture.** The user drops a PDF, pastes text, or uses the live webcam tab to capture a photo of their discharge papers. They can optionally select their native language (e.g., German, Spanish, Arabic) and input known allergies.
 - **Screen 2: The Analysis.** A loading state indicates AI processing. (Behind the scenes, the data is routed through our edge function to Gemini 3.5 Flash).
-- **Screen 3: The 2050 Cyber Healthcare Dashboard.**
+- **Screen 3: The Cyber Healthcare Dashboard.**
   - **Summary Tab:** Displays a heavily simplified, jargon-free summary of their condition, accompanied by a visual checklist of actions. Includes a native Text-To-Speech (TTS) "Read Aloud" button for accessibility.
   - **Medications Tab:** A visual timeline of when to take what, including automated safety checks against the user's provided allergies.
   - **Details Tab:** A structured breakdown of doctor instructions, follow-up appointments, and critical "red flag" warnings that necessitate emergency care.
